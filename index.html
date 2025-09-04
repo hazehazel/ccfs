@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CCF CONVERT</title>
+        <link rel="stylesheet" href="./ccfs.min.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="inner-wrap">
+                <div class="step step01">
+                    <div class="title-wrap">
+                        <h2>1. 변환할 HTML 입력</h2>
+                        <div class="desc">* 코코포리아 로그 내보내기 > html 파일 열기 > body 코드 복사</div>
+                    </div>
+                    <textarea id="text_wrap" placeholder="예시: <p style='color: #888888'><span> [main]</span> <span>PL</span> : <span> ... </span></p> ..."></textarea>
+                    <button id="convert" onclick="convertText()">변환</button>
+                </div>
+                <div class="step step02">
+                    <div class="title-wrap">
+                        <h2>2. 변환 코드 복사</h2>
+                    </div>
+                    <textarea id="result"></textarea>
+                    <button id="copy" onclick="copyToClipboard()">복사</button>
+                </div>
+
+                <div class="step step03">
+                    <div class="title-wrap"><h2>3. 미리보기</h2></div>
+                    <div id="result_preview"></div>
+                </div>
+            </div>
+        </div>
+        <script src="./ccfs.min.js"></script>
+    </body>
+</html>
