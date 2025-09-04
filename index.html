@@ -8,13 +8,25 @@
     </head>
     <body>
         <div class="wrap">
+            <div class="loader-wrap">
+                <div class="loader"></div>
+            </div>
+
             <div class="inner-wrap">
                 <div class="step step01">
                     <div class="title-wrap">
                         <h2>1. 변환할 HTML 입력</h2>
-                        <div class="desc">* 코코포리아 로그 내보내기 > html 파일 열기 > body 코드 복사</div>
+                        <div class="desc">* 코코포리아 로그 내보내기 > html 파일 열기 > F12(개발자 도구) 열기 > body 안에 있는 코드 복사</div>
                     </div>
+
                     <textarea id="text_wrap" placeholder="예시: <p style='color: #888888'><span> [main]</span> <span>PL</span> : <span> ... </span></p> ..."></textarea>
+
+                    <div style="display: flex; justify-content: flex-start; width: 100%">
+                        <label for="option_more">
+                            <input type="checkbox" id="option_more" checked />
+                            더보기/접기 추가(티스토리용)
+                        </label>
+                    </div>
                     <button id="convert" onclick="convertText()">변환</button>
                 </div>
                 <div class="step step02">
