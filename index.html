@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
@@ -21,7 +21,7 @@
 
                     <textarea id="text_wrap" placeholder="예시: <p style='color: #888888'><span> [main]</span> <span>PL</span> : <span> ... </span></p> ..."></textarea>
 
-                    <div style="display: flex; justify-content: flex-start; width: 100%">
+                    <div class="option-wrap">
                         <label for="option_more">
                             <input type="checkbox" id="option_more" checked />
                             더보기/접기 추가(티스토리용)
@@ -31,14 +31,24 @@
                 </div>
                 <div class="step step02">
                     <div class="title-wrap">
-                        <h2>2. 변환 코드 복사</h2>
+                        <h2>2. 이미지 추가(선택)</h2>
                     </div>
-                    <textarea id="result"></textarea>
-                    <button id="copy" onclick="copyToClipboard()">복사</button>
+
+                    <div id="img_input_wrap" class="img-input-wrap"></div>
+
+                    <button id="convertImg" onclick="convertWithImg()" disabled>이미지 추가</button>
                 </div>
 
                 <div class="step step03">
-                    <div class="title-wrap"><h2>3. 미리보기</h2></div>
+                    <div class="title-wrap">
+                        <h2>3. 변환 코드 복사</h2>
+                    </div>
+                    <textarea id="result"></textarea>
+                    <button id="copy" onclick="copyToClipboard()" disabled>복사</button>
+                </div>
+
+                <div class="step step04">
+                    <div class="title-wrap"><h2>4. 미리보기</h2></div>
                     <div id="result_preview"></div>
                 </div>
             </div>
