@@ -7,19 +7,19 @@
         <link rel="stylesheet" href="./ccfs.min.css" />
     </head>
     <body>
-        <div class="wrap">
-            <div class="loader-wrap">
+        <main class="wrap">
+            <div id="loader-wrap" class="loader-wrap">
                 <div class="loader"></div>
             </div>
 
             <div class="inner-wrap">
-                <div class="step step01">
+                <section class="step step01">
                     <div class="title-wrap">
                         <h2>1. 변환할 HTML 입력</h2>
                         <div class="desc">* 코코포리아 로그 내보내기 > html 파일 열기 > F12(개발자 도구) 열기 > body 안에 있는 코드 복사</div>
                     </div>
 
-                    <textarea id="text_wrap" placeholder="예시: <p style='color: #888888'><span> [main]</span> <span>PL</span> : <span> ... </span></p> ..."></textarea>
+                    <textarea id="text_wrap" placeholder="예시: <p style='color: #888888'><span> [main]</span> <span>PL</span> : <span> ... </span></p> ..." aria-label="변환할 HTML 입력란"></textarea>
 
                     <div class="option-wrap">
                         <label for="option_more">
@@ -46,32 +46,32 @@
                             </label>
                         </div>
                     </div>
-                    <button id="convert" onclick="convertText()">변환</button>
-                </div>
-                <div class="step step02">
+                    <button id="convert" type="button">변환</button>
+                </section>
+                <section class="step step02">
                     <div class="title-wrap">
                         <h2>2. 이미지 추가(선택)</h2>
                     </div>
 
                     <div id="img_input_wrap" class="img-input-wrap"></div>
 
-                    <button id="convertImg" onclick="convertWithImg()" disabled>이미지 추가</button>
-                </div>
+                    <button id="convertImg" type="button" disabled>이미지 추가</button>
+                </section>
 
-                <div class="step step03">
+                <section class="step step03">
                     <div class="title-wrap">
                         <h2>3. 변환 코드 복사</h2>
                     </div>
-                    <textarea id="result"></textarea>
-                    <button id="copy" onclick="copyToClipboard()" disabled>복사</button>
-                </div>
+                    <textarea id="result" aria-label="결과 코드"></textarea>
+                    <button id="copy" type="button" disabled>복사</button>
+                </section>
 
-                <div class="step step04">
+                <section class="step step04">
                     <div class="title-wrap"><h2>4. 미리보기</h2></div>
                     <div id="result_preview"></div>
-                </div>
+                </section>
             </div>
-        </div>
+        </main>
         <script src="./ccfs.min.js"></script>
     </body>
 </html>
