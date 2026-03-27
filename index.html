@@ -4,74 +4,121 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CCF CONVERT</title>
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
         <link rel="stylesheet" href="./ccfs.min.css" />
     </head>
     <body>
-        <main class="wrap">
-            <div id="loader-wrap" class="loader-wrap">
-                <div class="loader"></div>
-            </div>
+        <div class="wrap">
+            <div id="loader-wrap" class="loader-wrap"><div class="loader"></div></div>
 
-            <div class="inner-wrap">
+            <header class="page-header">
+                <h1>CCF CONVERT</h1>
+                <p>코코포리아 로그 변환기</p>
+            </header>
+
+            <main class="inner-wrap">
+                <!-- Step 1 : 입력 -->
                 <section class="step step01">
-                    <div class="title-wrap">
-                        <h2>1. 변환할 HTML 입력</h2>
-                        <div class="desc">* 코코포리아 로그 내보내기 > html 파일 열기 > F12(개발자 도구) 열기 > body 안에 있는 코드 복사</div>
+                    <div class="step-head">
+                        <span class="step-badge">1</span>
+                        <div>
+                            <h2>변환할 HTML 입력</h2>
+                            <p class="desc">
+                                코코포리아 로그 내보내기 → html 파일 열기 → F12 → body 안의 코드 복사<br />
+                                또는 아래에 <b>.txt / .html 파일</b>을 드래그하거나 클릭해 선택하세요.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 파일 업로드 존 -->
+                    <div class="upload-zone" id="upload-zone">
+                        <input type="file" id="file-input" accept=".txt,.html,.htm" hidden />
+                        <span class="upload-icon">📄</span>
+                        <span class="upload-text">파일을 여기에 드래그하거나 <b>클릭하여 선택</b></span>
+                        <span class="upload-hint">.txt · .html 지원</span>
+                        <span class="file-name" id="file-name"></span>
                     </div>
 
                     <textarea id="text_wrap" placeholder="예시: <p style='color: #888888'><span> [main]</span> <span>PL</span> : <span> ... </span></p> ..." aria-label="변환할 HTML 입력란"></textarea>
 
-                    <div class="option-wrap">
-                        <label for="option_more">
-                            <input type="checkbox" id="option_more" checked />
-                            더보기/접기 추가(티스토리용)
-                        </label>
-                    </div>
-                    <div class="style-wrap">
-                        <b>스타일 선택</b>
-                        <div>
-                            <label class="style-0" for="style_0">
-                                <input type="radio" name="convert_style" id="style_0" value="0" checked />
-                                <span class="item-wrap">
-                                    <span class="name">캐릭터명</span>
-                                    <span class="text">동해물과 백두산이 마르고 닳도록</span>
-                                </span>
-                            </label>
-                            <label class="style-1" for="style_1">
-                                <input type="radio" name="convert_style" id="style_1" value="1" />
-                                <span class="item-wrap">
-                                    <span class="name">캐릭터명</span>
-                                    <span class="text">동해물과 백두산이 마르고 닳도록</span>
-                                </span>
+                    <div class="options-row">
+                        <div class="option-wrap">
+                            <label for="option_more">
+                                <input type="checkbox" id="option_more" checked />
+                                더보기/접기 추가(티스토리용)
                             </label>
                         </div>
-                    </div>
-                    <button id="convert" type="button">변환</button>
-                </section>
-                <section class="step step02">
-                    <div class="title-wrap">
-                        <h2>2. 이미지 추가(선택)</h2>
+                        <div class="style-wrap">
+                            <b>스타일</b>
+                            <div>
+                                <label class="style-0" for="style_0">
+                                    <input type="radio" name="convert_style" id="style_0" value="0" checked />
+                                    <span class="item-wrap">
+                                        <span class="name">캐릭터명</span>
+                                        <span class="text">동해물과 백두산이 마르고 닳도록</span>
+                                    </span>
+                                </label>
+                                <label class="style-1" for="style_1">
+                                    <input type="radio" name="convert_style" id="style_1" value="1" />
+                                    <span class="item-wrap">
+                                        <span class="name">캐릭터명</span>
+                                        <span class="text">동해물과 백두산이 마르고 닳도록</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
+                    <button id="convert" type="button">변환하기</button>
+                </section>
+
+                <!-- Step 2 : 이미지 추가 -->
+                <section class="step step02 step-hidden">
+                    <div class="step-head">
+                        <span class="step-badge">2</span>
+                        <h2>이미지 추가 <span class="step-optional">(선택)</span></h2>
+                    </div>
                     <div id="img_input_wrap" class="img-input-wrap"></div>
-
-                    <button id="convertImg" type="button" disabled>이미지 추가</button>
+                    <button id="convertImg" type="button" disabled>이미지 적용</button>
                 </section>
 
-                <section class="step step03">
-                    <div class="title-wrap">
-                        <h2>3. 변환 코드 복사</h2>
+                <!-- Step 3 : 결과 복사 -->
+                <section class="step step03 step-hidden">
+                    <div class="step-head">
+                        <span class="step-badge">3</span>
+                        <div>
+                            <h2>변환 코드 복사</h2>
+                            <span class="line-count" id="line-count"></span>
+                        </div>
                     </div>
-                    <textarea id="result" aria-label="결과 코드"></textarea>
+                    <textarea id="result" aria-label="결과 코드" readonly></textarea>
                     <button id="copy" type="button" disabled>복사</button>
                 </section>
 
-                <section class="step step04">
-                    <div class="title-wrap"><h2>4. 미리보기</h2></div>
-                    <div id="result_preview"></div>
+                <!-- Step 4 : 미리보기 + 편집 -->
+                <section class="step step04 step-hidden">
+                    <div class="step-head">
+                        <span class="step-badge">4</span>
+                        <div>
+                            <h2>미리보기</h2>
+                            <p class="desc">텍스트를 직접 수정한 뒤 코드로 복사할 수 있습니다.</p>
+                        </div>
+                    </div>
+                    <div id="result_preview" class="preview-area"></div>
+                    <button class="preview-expand-btn" id="preview-expand" style="display: none">▼ 전체 미리보기 펼치기</button>
+                    <div class="edit-btn-row">
+                        <button id="edit-toggle" type="button" class="btn-secondary">편집 모드</button>
+                        <button id="edit-copy" type="button" class="btn-edit-copy" disabled>수정 코드 복사</button>
+                    </div>
                 </section>
-            </div>
-        </main>
+            </main>
+        </div>
+        <!-- 스크롤 플로팅 버튼 -->
+        <div class="scroll-btns">
+            <button class="scroll-btn" id="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="맨 위로">↑</button>
+            <button class="scroll-btn" id="scroll-bottom" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })" title="맨 아래로">↓</button>
+        </div>
+
         <script src="./ccfs.min.js"></script>
     </body>
 </html>
